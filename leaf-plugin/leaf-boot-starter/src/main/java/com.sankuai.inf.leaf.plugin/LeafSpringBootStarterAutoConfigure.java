@@ -11,6 +11,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.util.StringUtils;
 
 /**
  * @author zhaodong.xzd (github.com/yaccc)
@@ -38,9 +39,10 @@ public class LeafSpringBootStarterAutoConfigure {
     @Value("${leaf.snowflake.port}")
     private int port;
 
+
     @Bean
     public SegmentService initLeafSegmentStarter() throws Exception {
-        if (segmentEnable) {
+        if (!StringUtils.isEmpty(url) && !StringUtils.isEmpty(username) && !StringUtils.isEmpty(password) && segmentEnable) {
             SegmentService segmentService = new SegmentService(url, username, password);
             return segmentService;
         }
@@ -48,13 +50,13 @@ public class LeafSpringBootStarterAutoConfigure {
         return null;
     }
 
-    @Bean
-    public SnowflakeService initLeafSnowflakeStarter() throws InitException {
-        if (snowflakeEnable) {
-            SnowflakeService snowflakeService = new SnowflakeService(address, port);
-            return snowflakeService;
-        }
-        logger.warn("init leaf snowflake ignore properties is {}");
-        return null;
-    }
+//    @Bean
+//    public SnowflakeService initLeafSnowflakeStarter() throws InitException {
+//        if (!StringUtils.isEmpty(address) && !StringUtils.isEmpty(port) && snowflakeEnable) {
+//            SnowflakeService snowflakeService = new SnowflakeService(address, port);
+//            return snowflakeService;
+//        }
+//        logger.warn("init leaf snowflake ignore properties is {}");
+//        return null;
+//    }
 }

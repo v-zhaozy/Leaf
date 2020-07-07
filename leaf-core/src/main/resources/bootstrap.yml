@@ -10,4 +10,4 @@ leaf:
     enable: false
     zk:
       address:
-    port:
+    port: 0

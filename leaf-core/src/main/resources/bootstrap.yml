@@ -1,0 +1,13 @@
+leaf:
+  name: ss-app-leaf
+  segment:
+    enable: true
+  jdbc:
+    url: jdbc:mysql://192.168.99.146:3306/leaf?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    username: root
+    password: 85Gvqy5u
+  snowflake:
+    enable: false
+    zk:
+      address:
+    port:
